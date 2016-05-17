@@ -49,6 +49,11 @@ public class PersonCard implements Serializable{
 	@XmlElement(name = "contactItem")
 	private List<ItemGeneric> contactItems;
 	
+	@XmlElementWrapper(name="trainingCategoryItems")
+	@XmlElement(name = "trainingCategoryItem")
+	private List<TrainingCategory> trainingCategoryItems;
+	
+	
 	
 	public String getId() {
 		return id;
@@ -169,6 +174,22 @@ public class PersonCard implements Serializable{
 	}
 	public void setContactItems(List<ItemGeneric> contactItems) {
 		this.contactItems = contactItems;
+	}
+	
+	public List<TrainingCategory> getTrainingCategoryItems() {
+		return trainingCategoryItems;
+	}
+	public void setTrainingCategoryItems(List<TrainingCategory> trainingCategoryItems) {
+		this.trainingCategoryItems = trainingCategoryItems;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public void setBirthdateDesc(String birthdateDesc) {
+		this.birthdateDesc = birthdateDesc;
+	}
+	public void setCivilStateDesc(String civilStateDesc) {
+		this.civilStateDesc = civilStateDesc;
 	}
 	
 	

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <!doctype html>
 <html class="no-js" lang="">
@@ -66,111 +69,46 @@
             </nav>
             
             <div id="content">
-                <section id="left_content">
-                    <nav class="ui secondary vertical pointing menu" >
-                        <a class="item active" data-tab="tab_center_1_1">
-                            <i class="angle right icon"></i> CARRERA
-                        </a>
-                        <a class="item" data-tab="tab_center_1_2">
-                            <i class="angle right  icon"></i> CURSOS Y TALLERES
-                        </a>
-                        <a class="item" data-tab="tab_center_1_3">
-                            <i class="angle right  icon"></i> CERTIFICACIONES
-                        </a>
-                    </nav>
-                </section>
-
-
-                <section id="center_content">
-
-                    <div class="content ui tab active" data-tab="tab_center_1_1">
-                        <article class="item_info">
-                            <h1 class="ui dividing header">Instituto Superior Privado CIBERTEC
-                                <span class="date">2009- 2013</span>
-                            </h1>
-                            <h2>Computación e Informática</h2>
-                            <p><b>Estado:</b>    EGRESADO</p>                        
-                        </article>
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">Instituto Superior Privado CIBERTEC
-                                <span class="date">2013</span>
-                            </h1>
-                            <h2>Diplomado en Computación e Informática</h2>
-                            <p><b>Estado:</b>    TITULADO</p>                        
-                        </article>    
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">Universidad Peruana de Ciencias Aplicadas UPC
-                                <span class="date">2014</span>
-                            </h1>
-                            <h2>Ingeniería de Sistemas</h2>
-                            <p><b>Ciclo:</b>    Cuarto</p>
-                            <p><b>Estado:</b>    APLAZADO</p>                       
-                        </article>      
-                    </div>
-
-                    <div class="content ui tab" data-tab="tab_center_1_2">
-                        <article class="item_info">
-                            <h1 class="ui dividing header">CIBERTEC DAT
-                                <span class="date">2015(140 horas)</span>
-                            </h1>
-                            <h2>Java 7.0 Architect Application Developer</h2>
-                            <p><b>Estado:</b>    CULMINADO</p>                       
-                        </article>    
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">BSGRUPO ORACLE ASSOCIATED
-                                <span class="date">2014</span>
-                            </h1>
-                            <h2>Diplomado en Oracle Certified Expert: Java EE 6 Web Services Developer</h2>
-                            <p><b>Estado:</b>    CULMINADO</p>                       
-                        </article>    
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">JOE DAYZ
-                                <span class="date">2014</span>
-                            </h1>
-                            <h2>Curso Taller: Core Spring 4<h2>
-                            <p><b>Estado:</b>    CULMINADO</p>                       
-                        </article>    
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">JOE DAYZ
-                                <span class="date">2014</span>
-                            </h1>
-                            <h2>Curso Taller: Primefaces 3.5</h2>
-                            <p><b>Estado:</b>    CULMINADO</p>                       
-                        </article>    
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">Laboratorio de Tecnología Virtual - UTP
-                                <span class="date">2011</span>
-                            </h1>
-                            <h2>Curso Taller: PHP Orientado a Objetos</h2>
-                            <p><b>Estado:</b>    CULMINADO</p>                       
-                        </article>    
-
-                        <article class="item_info">
-                            <h1 class="ui dividing header">Sistemas UNI
-                                <span class="date">2009</span>
-                            </h1>
-                            <h2>Web Designer Professional</h2>
-                            <p><b>Estado:</b>    CULMINADO</p>                       
-                        </article>
-                    </div>
-
-                    <div class="content ui tab" data-tab="tab_center_1_3">
-                        <article class="item_info">
-                            <h1 class="ui dividing header">PrimeFaces 3.5 Certification
-                                <span class="date">2014</span>
-                            </h1>
-                            <p><b>Diploma:</b>    <a href="http://www.proprofs.com/quiz-school/usercertificate.php?id=55007937&qid=588034&uname=Edgar%20Medina%20Vargas" target="_blank">Edgar Medina Vargas</a></p>
-
-                        </article>
-                    </div>
-                     
-                </section>
+            	
+            	<c:choose>
+	            	<c:when test="${fn:length(personCard.trainingCategoryItems) > 0}">
+	            		<section id="left_content">
+		                    <nav class="ui secondary vertical pointing menu" >
+		                    
+		                    	<c:forEach var="trainingCategoryItem" items="${personCard.trainingCategoryItems}" varStatus="loop">
+		                    		<a class="item ${loop.first? 'active':''}" data-tab="tab_center_1_${trainingCategoryItem.name}">
+			                            <i class="angle right icon"></i> ${trainingCategoryItem.name} 
+			                        </a>
+		                    	</c:forEach>
+		                    	
+		                    </nav>
+		                </section>
+		
+		
+		                <section id="center_content">
+		                
+		                	<c:forEach var="trainingCategoryItem" items="${personCard.trainingCategoryItems}" varStatus="loop">
+		                   		<div class="content ui tab ${loop.first? 'active':''}" data-tab="tab_center_1_${trainingCategoryItem.name}">
+		                   			<c:forEach var="trainingItem" items="${trainingCategoryItem.trainingItems}">
+			                    		<article class="item_info">
+				                            <h1 class="ui dividing header">${trainingItem.institute}
+				                                <span class="date"><fmt:formatDate pattern="MM/yyyy" value="${trainingItem.startDate}" /> - 
+				                                <fmt:formatDate pattern="MM/yyyy" value="${trainingItem.endDate}" /></span>
+				                            </h1>
+				                            <h2>${trainingItem.name}</h2>
+				                            <p><b>Estado:</b>    ${trainingItem.state}</p>                        
+				                        </article>
+			                    	</c:forEach>
+		                   		</div>
+		                   	</c:forEach>
+		                     
+		                </section>
+	            	</c:when>
+	            	<c:otherwise>
+	            		NO HAY NADA POR ACA
+	            	</c:otherwise>
+            	</c:choose>
+                
             </div>
             <footer>
                 MCards 2016 © Todos los derechos reservados

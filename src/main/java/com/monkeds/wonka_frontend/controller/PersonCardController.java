@@ -21,7 +21,7 @@ public class PersonCardController {
 //		ModelAndView mav = new ModelAndView(index());
 //		mav.addObject("personCard", PersonCardManager.getPerson("mati"));
 //		return mav;
-//		System.out.println("poblando "+PersonCardManager.populate());
+		System.out.println("poblando "+PersonCardManager.populate());
 		return new ModelAndView("404");
 	}
 	

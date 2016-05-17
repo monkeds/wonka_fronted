@@ -8,6 +8,9 @@ import java.util.List;
 import com.monkeds.wonka_fronted.entity.ItemGeneric;
 import com.monkeds.wonka_fronted.entity.PersonCard;
 import com.monkeds.wonka_fronted.entity.PersonCard.CivilState;
+import com.monkeds.wonka_fronted.entity.Training;
+import com.monkeds.wonka_fronted.entity.TrainingCategory;
+import com.monkeds.wonka_fronted.entity.Training.TrainingState;
 import com.monkeds.wonka_fronted.util.DateUtil;
 import com.monkeds.wonka_fronted.util.ParserUtil;
 
@@ -17,6 +20,10 @@ public class PersonCardManager {
 	
 	public static String populate(){
 		listaPersonCard = new ArrayList<>();
+		List<ItemGeneric> contactItemList = new ArrayList<>();
+		List<TrainingCategory> trainingCategoryItems = new ArrayList<>();
+		List<Training> trainingItems = new ArrayList<>();
+		
 		PersonCard matias = new PersonCard();
 		matias.setId("mati");
 		matias.setName("Matias");
@@ -32,7 +39,7 @@ public class PersonCardManager {
 		matias.setCellphone("999232322");
 		matias.setPhone("0050004");
 		matias.setEmail("matias@hotmail.com");
-		List<ItemGeneric> contactItemList = new ArrayList<>();
+		
 		contactItemList.add(new ItemGeneric("Facebook", "facebook.com/matias"));
 		contactItemList.add(new ItemGeneric("Cuna", "Chiki toys"));
 		matias.setContactItems(contactItemList);
@@ -56,12 +63,55 @@ public class PersonCardManager {
 		edgar.setPhone("75 1544");
 		edgar.setEmail("medient@hotmail.com");
 		
-		
 		contactItemList = new ArrayList<>();
 		contactItemList.add(new ItemGeneric("Facebook", "www.facebook.com/emedinavargas"));
 		contactItemList.add(new ItemGeneric("Github", "https://github.com/monkar"));
 		contactItemList.add(new ItemGeneric("DeviantArt", "https://deviantart.com/zshadow"));
 		edgar.setContactItems(contactItemList);
+		
+		//CARRERA
+		trainingItems = new ArrayList<>();
+		trainingItems.add(new Training("Instituto Superior Privado CIBERTEC",
+										"Computación e Informática", TrainingState.CULMINADO, 
+										null, DateUtil.stringToDate("01/01/2009", "dd/MM/yyyy"), 
+										DateUtil.stringToDate("01/01/2013", "dd/MM/yyyy")));
+		trainingItems.add(new Training("Instituto Superior Privado CIBERTEC",
+				"Diplomado en Computación e Informática", TrainingState.TITULADO, 
+				null, DateUtil.stringToDate("01/01/2013", "dd/MM/yyyy"), 
+				DateUtil.stringToDate("01/09/2013", "dd/MM/yyyy")));
+		trainingItems.add(new Training("Universidad Peruana de Ciencias Aplicadas UPC",
+				"Ingeniería de Sistemas", TrainingState.APLAZADO, 
+				null, DateUtil.stringToDate("01/01/2014", "dd/MM/yyyy"), 
+				DateUtil.stringToDate("01/05/2014", "dd/MM/yyyy")));
+		trainingCategoryItems.add(new TrainingCategory("CARRERA",trainingItems));
+		
+		//CURSOS
+		trainingItems = new ArrayList<>();
+		trainingItems.add(new Training("CIBERTEC DAT",
+										"Java 7.0 Architect Application Developer", TrainingState.CULMINADO, 
+										null, DateUtil.stringToDate("01/05/2015", "dd/MM/yyyy"), 
+										DateUtil.stringToDate("01/11/2015", "dd/MM/yyyy")));
+		trainingItems.add(new Training("BSGRUPO ORACLE ASSOCIATED",
+				"Diplomado en Oracle Certified Expert: Java EE 6 Web Services Developer", TrainingState.CULMINADO, 
+				null, DateUtil.stringToDate("01/01/2014", "dd/MM/yyyy"), 
+				DateUtil.stringToDate("01/09/2014", "dd/MM/yyyy")));
+		trainingItems.add(new Training("JOE DAYZ",
+				"Curso Taller: Core Spring 4", TrainingState.CULMINADO, 
+				null, DateUtil.stringToDate("01/01/2014", "dd/MM/yyyy"), 
+				DateUtil.stringToDate("01/05/2014", "dd/MM/yyyy")));
+		trainingCategoryItems.add(new TrainingCategory("CURSOS",trainingItems));
+		
+		//CERTIFICACIONES
+		trainingItems = new ArrayList<>();
+		trainingItems.add(new Training("PrimeFaces 3.5 Certification",
+										"Java 7.0 Architect Application Developer", TrainingState.CULMINADO, 
+										null, DateUtil.stringToDate("01/01/2014", "dd/MM/yyyy"), 
+										DateUtil.stringToDate("01/021/2014", "dd/MM/yyyy")));
+		trainingCategoryItems.add(new TrainingCategory("CERTIFICACIONES",trainingItems));
+		
+		
+		
+		edgar.setTrainingCategoryItems(trainingCategoryItems);
 		listaPersonCard.add(edgar);
 		
 		

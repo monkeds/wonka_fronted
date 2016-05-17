@@ -170,6 +170,11 @@ PROGRESSBAR
     box-shadow: none;
     height: 40px;
 }
+#wrapper>nav>.item:first-child {
+    width: 100px !important;
+    text-align: center !important;
+    padding: auto;
+}
 
 #wrapper>footer{
     width: 100%; 
